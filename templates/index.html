@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portafolio
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Coins</th>
+                    <th>Coin Value</th>
+                    <th>Total Value</th>
+                </tr>
+            </thead>
+            {% for stock in stocks %}
+                {% if stock["price"] == None %}
+                    <div>
+                        <p>Sorry, the API is down so current prices are not available</p>
+                    </div>
+                {% endif %}
+                <tr>
+                    <td>{{ stock["name"] }}</td>
+                    <td>{{ stock["total_shares"] }}</td>
+                    <td>{{ stock["price"] }}</td>
+                    <td>{{ stock["stocks_value"] }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>Cash</td>
+                <td></td>
+                <td></td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ total }}</th>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
